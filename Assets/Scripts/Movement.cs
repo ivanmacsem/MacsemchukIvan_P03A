@@ -18,6 +18,7 @@ public class Movement : MonoBehaviour
     public Transform rightCheckCol;
     public bool grounded = false;
     public bool walled = false;
+    private bool go = true;
 
     void Start()
     {
@@ -29,6 +30,16 @@ public class Movement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         Vector2 dir = new Vector2(x,y);
+        bool temp = go;
+        if(x > 0){
+            go = true;
+        }
+        else{
+            go = false;
+        }
+        if(temp != go){
+            CreateDust();
+        }
 
         GroundCheck();
         WallCheck();
